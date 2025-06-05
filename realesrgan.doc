@@ -1,0 +1,63 @@
+﻿4. Thiếu bộ lọc nâng cao (Upscale)
+
+Ngay cả khi tạo ảnh 1024x1024, ảnh vẫn có thể bị nhiễu. Bạn có thể dùng ESRGAN để tăng độ phân giải ảnh:
+
+📌 Cài đặt ESRGAN:
+
+pip install realesrgan
+
+📌 Dùng ESRGAN để upscale ảnh:
+
+from realesrgan import RealESRGAN
+from PIL import Image
+
+model = RealESRGAN("cuda")  # Dùng GPU
+model.load_model("RealESRGAN_x4plus")
+
+image = Image.open("output.png")
+upscaled = model.enhance(image, scale=4)  # Tăng 4 lần độ phân giải
+upscaled.save("output_upscaled.png")
+
+############################################################################################################
+
+Stable Diffusion là một loạt các mô hình AI mã nguồn mở do Stability AI phát triển, cho phép tạo hình ảnh từ mô tả văn bản. Kể từ khi ra mắt, đã có nhiều phiên bản được phát hành, mỗi phiên bản mang đến những cải tiến và tính năng mới. Dưới đây là tổng quan về các phiên bản chính và sự khác biệt giữa chúng:
+
+### 1. Stable Diffusion 1.x
+
+- **Phiên bản 1.4 (tháng 8/2022):** Đây là phiên bản đầu tiên được công bố rộng rãi, cho phép tạo hình ảnh ở độ phân giải 512x512 pixel.
+
+- **Phiên bản 1.5 (tháng 10/2022):** Tiếp tục cải tiến từ 1.4, phiên bản này được phát hành bởi RunwayML và mang đến chất lượng hình ảnh tốt hơn. citeturn0search10
+
+### 2. Stable Diffusion 2.x
+
+- **Phiên bản 2.0 (tháng 11/2022):** Mô hình được huấn luyện lại từ đầu trên một tập dữ liệu đã được lọc, hỗ trợ tạo hình ảnh ở độ phân giải lên đến 768x768 pixel.
+
+- **Phiên bản 2.1 (tháng 12/2022):** Dựa trên phiên bản 2.0, phiên bản này tiếp tục cải thiện chất lượng hình ảnh và khả năng hiểu ngữ cảnh từ văn bản. citeturn0search10
+
+### 3. Stable Diffusion XL (SDXL)
+
+- **SDXL 1.0 (tháng 7/2023):** Đây là phiên bản mở rộng với 3,5 tỷ tham số, lớn hơn khoảng 3,5 lần so với các phiên bản trước đó. SDXL cho phép tạo hình ảnh ở độ phân giải 1024x1024 pixel, với độ chi tiết và chân thực cao hơn. citeturn0search10
+
+- **SDXL Turbo (tháng 11/2023):** Phiên bản này được tối ưu hóa từ SDXL 1.0, cho phép tạo hình ảnh nhanh hơn với số bước khuếch tán ít hơn, hướng đến việc tạo ảnh gần như theo thời gian thực. citeturn0search10
+
+### 4. Stable Diffusion 3.x
+
+- **Phiên bản 3.0 (tháng 2/2024 - bản xem trước):** Đây là một họ mô hình với kích thước từ 800 triệu đến 8 tỷ tham số, sử dụng kiến trúc Transformer với phương pháp "rectified flow" để cải thiện chất lượng hình ảnh và hiệu suất. citeturn0search10
+
+- **Phiên bản 3.5 (tháng 10/2024):** Bao gồm các mô hình như Large (8 tỷ tham số), Large Turbo (tối ưu hóa từ Large) và Medium (2,5 tỷ tham số), phiên bản này tiếp tục nâng cao chất lượng hình ảnh và tốc độ tạo ảnh. citeturn0search10
+
+### So sánh tổng quan
+
+- **Chất lượng hình ảnh:** Tăng dần qua các phiên bản, với SDXL và 3.x cung cấp hình ảnh chi tiết và chân thực hơn.
+
+- **Độ phân giải:** Từ 512x512 pixel ở phiên bản 1.x lên đến 1024x1024 pixel ở SDXL và 3.x.
+
+- **Yêu cầu phần cứng:** Các phiên bản mới hơn với nhiều tham số hơn yêu cầu phần cứng mạnh mẽ hơn, đặc biệt là GPU với VRAM lớn.
+
+- **Tốc độ tạo ảnh:** SDXL Turbo và các phiên bản 3.x được tối ưu hóa để giảm thời gian tạo ảnh, mặc dù chất lượng vẫn được duy trì ở mức cao.
+
+Việc lựa chọn phiên bản phù hợp phụ thuộc vào nhu cầu cụ thể của bạn về chất lượng hình ảnh, tốc độ và khả năng phần cứng hiện có. 
+
+Dưới đây là bảng so sánh giữa Stable Diffusion 3.5 Large và Stable Diffusion 3.5 Large Turbo:
+Tiêu chíStable Diffusion 3.5 LargeStable Diffusion 3.5 Large TurboSố tham số8,1 tỷ citeturn0search0Không công bố cụ thể, là phiên bản tinh gọn của Large citeturn0search2Chất lượng hình ảnhCao, phù hợp cho các ứng dụng chuyên nghiệp ở độ phân giải 1 megapixel citeturn0search0Cao, với độ tuân thủ prompt xuất sắc citeturn0search0Tốc độ suy luậnYêu cầu nhiều tài nguyên tính toán hơn, thời gian tạo ảnh lâu hơnNhanh hơn đáng kể, tạo ảnh chất lượng cao chỉ trong 4 bước citeturn0search0Yêu cầu phần cứngCần phần cứng mạnh mẽ, phù hợp cho máy trạm hoặc máy chủ với GPU cao cấpTối ưu hóa cho phần cứng tiêu dùng, yêu cầu tài nguyên thấp hơn citeturn0search0Khả năng tùy chỉnhDễ dàng tinh chỉnh để đáp ứng nhu cầu sáng tạo cụ thểTương tự, nhưng với hiệu suất cao hơn do tốc độ suy luận nhanh hơnLưu ý: Việc lựa chọn giữa hai mô hình phụ thuộc vào nhu cầu cụ thể của bạn. Nếu bạn ưu tiên chất lượng hình ảnh cao nhất và không ngại về thời gian xử lý, Stable Diffusion 3.5 Large là lựa chọn phù hợp. Ngược lại, nếu bạn cần tốc độ tạo ảnh nhanh hơn mà vẫn duy trì chất lượng cao, Stable Diffusion 3.5 Large Turbo sẽ là lựa chọn tối ưu.
+
